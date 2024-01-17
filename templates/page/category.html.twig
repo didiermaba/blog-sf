@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if category is not null %}
+        {{ category.name }}
+    {% else %}
+        Category Not Found
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if category is not null %}
+        <h1>{{ category.name }}</h1>
+
+        <ul>
+            <li>
+                <a href="{{ path('category_new') }}">
+                    Ajouter
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('category_edit', {'category': category.name} ) }}">
+                    Modifier
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('category_edit', {'category': category.name} ) }}">
+                    Supprimer
+                </a>
+            </li>
+        </ul>
+        {{ dump(posts) }}
+    {% else %}
+        <p>Category not found.</p>
+    {% endif %}
+{% endblock %}
